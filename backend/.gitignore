@@ -8,12 +8,15 @@ node_modules/
 example.txt
 hederaTest.js
 response.json
-file.c
+
 
 # 📁 Runtime Directories
 uploads/
 output/
 logs/
+uploads/
+
+response.json
 
 # 💻 OS & Editor Junk
 .DS_Store
