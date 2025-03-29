@@ -1,0 +1,21 @@
+# 🔒 Environment Variables
+.env
+
+# 📦 Node Modules
+node_modules/
+
+# 🧪 Test & Dev Files
+example.txt
+hederaTest.js
+response.json
+file.c
+
+# 📁 Runtime Directories
+uploads/
+output/
+logs/
+
+# 💻 OS & Editor Junk
+.DS_Store
+*.log
+*.swp
