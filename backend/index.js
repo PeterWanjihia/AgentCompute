@@ -4,6 +4,9 @@ const cors = require('cors');
 const supplierRoutes = require('./routes/supplier');
 const jobRoutes = require('./routes/job');
 const proofRoutes = require('./routes/proof');
+const uploadRoutes = require("./routes/upload");
+
+
 
 const path = require('path');
 
@@ -22,6 +25,8 @@ app.use('/api', supplierRoutes);
 app.use('/api', jobRoutes);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/api', proofRoutes);
+app.use("/api", uploadRoutes);
+
 
 
 

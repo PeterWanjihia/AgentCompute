@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AgentCompute | Smart Contract Demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.6.2/dist/ethers.umd.min.js"></script>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 2rem;
+      background: #f9f9f9;
+      color: #333;
+    }
+    h1, h2 {
+      color: #2d3748;
+    }
+    input, button {
+      margin: 8px 0;
+      padding: 10px;
+      font-size: 1rem;
+      width: 100%;
+      box-sizing: border-box;
+    }
+    #walletStatus {
+      margin-bottom: 1rem;
+      font-weight: bold;
+    }
+    .section {
+      margin-top: 2rem;
+      padding: 1rem;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🧠 AgentCompute Smart Contract Demo</h1>
+
+  <!-- Wallet Connection Status -->
+  <div id="walletStatus">🔍 Checking MetaMask...</div>
+
+  <!-- Supplier Registration Section -->
+  <div class="section">
+    <h2>🔐 Register as Supplier</h2>
+    <button onclick="register()">Register Supplier</button>
+    <p id="regResult"></p>
+  </div>
+
+  <!-- Job Submission Section -->
+  <div class="section">
+    <h2>📤 Submit a Job</h2>
+    <input type="file" id="jobFile" />
+    <input type="number" id="budgetInput" placeholder="Budget (tinybar)" />
+    <button onclick="submit()">Submit Job</button>
+    <p id="submitResult"></p>
+  </div>
+
+  <!-- Load Contract Logic -->
+  <script src="js/register.js"></script>
+  <script src="js/submit.js"></script>
+
+  <!-- Wallet Detection & Connection -->
+  <script>
+    async function checkMetaMaskConnection() {
+      const statusEl = document.getElementById("walletStatus");
+
+      if (typeof window.ethereum !== 'undefined') {
+        try {
+          const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+          const currentAccount = accounts[0];
+          statusEl.innerText = `🔗 Connected wallet: ${currentAccount}`;
+        } catch (error) {
+          statusEl.innerText = "❌ MetaMask connection rejected.";
+          console.error("MetaMask connection error:", error);
+        }
+      } else {
+        statusEl.innerText = "❌ MetaMask is not installed.";
+      }
+    }
+
+    window.addEventListener("DOMContentLoaded", checkMetaMaskConnection);
+  </script>
+
+</body>
+</html>
